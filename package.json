@@ -1,0 +1,45 @@
+{
+  "name": "testserver",
+  "version": "1.0.0",
+  "description": "Test server ",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "react-scripts start",
+    "server": "node server.js"
+  },
+  "keywords": [
+    "Farid"
+  ],
+  "author": "FaridYusifzadeh",
+  "license": "ISC",
+  "dependencies": {
+    "@ant-design/icons": "^5.5.2",
+    "@reduxjs/toolkit": "^2.5.0",
+    "@types/react-redux": "^7.1.34",
+    "@types/react-router-dom": "^5.3.3",
+    "antd": "^5.23.1",
+    "axios": "^1.7.9",
+    "body-parser": "^1.19.0",
+    "concurrently": "^9.1.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.4.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.1.1",
+    "react-toastify": "^11.0.3",
+    "redux": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/react-dom": "^19.0.3",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.0",
+    "tailwindcss": "^3.4.17",
+    "vite": "^6.0.7"
+  }
+}
