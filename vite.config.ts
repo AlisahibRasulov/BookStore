@@ -30,7 +30,7 @@ export default defineConfig({
   plugins: [
     {
       name: 'html-transform',
-      transformIndexHtml(html) {
+      transformIndexHtml(html: string) {
         return html.replace(/<title>(.*?)<\/title>/, `<title>Yeni Başlık</title>`); 
       },
     },
