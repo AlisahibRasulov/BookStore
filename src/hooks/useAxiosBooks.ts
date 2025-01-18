@@ -1,10 +1,13 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Book, BookDetails } from '../types/book';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Book, BookDetails } from "../types/book";
 
-const BASE_URL = 'https://api.itbook.store/1.0';
+const BASE_URL = "https://api.itbook.store/1.0";
 
-export const useAxiosBooks = (query: string = '', isbn13: string | null = null) => {
+export const useAxiosBooks = (
+  query: string = "",
+  isbn13: string | null = null
+) => {
   const [books, setBooks] = useState<Book[]>([]);
   const [bookDetails, setBookDetails] = useState<BookDetails | null>(null);
   const [loading, setLoading] = useState(false);
@@ -27,7 +30,7 @@ export const useAxiosBooks = (query: string = '', isbn13: string | null = null) 
           setBooks(response.data.books || []);
         }
       } catch (err: any) {
-        setError('Veriler alınırken bir hata oluştu.');
+        setError("Veriler alınırken bir hata oluştu.");
       } finally {
         setLoading(false);
       }
