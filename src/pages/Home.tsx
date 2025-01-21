@@ -3,6 +3,7 @@ import BookList from "../components/BookList";
 import { useAxiosBooks } from "../hooks/useAxiosBooks";
 import { Input, Button } from "antd";
 import { toast } from "react-toastify";
+import { ScaleLoader } from "react-spinners";
 
 const { Search } = Input;
 
@@ -61,7 +62,9 @@ const Home: React.FC = () => {
       </div>
 
       {loading && (
-        <p className="text-cyan-950 text-2xl font-bold">Loading...</p>
+        <p className="text-cyan-950 text-2xl font-bold">
+          <ScaleLoader />
+        </p>
       )}
 
       {error && <p>{error}</p>}
