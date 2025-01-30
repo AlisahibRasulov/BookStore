@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import BookList from "../components/BookList";
 import { useAxiosBooks } from "../hooks/useAxiosBooks";
-import { Input, Button } from "antd";
+import { Input, Button, Pagination } from "antd";
 import { toast } from "react-toastify";
 import { ScaleLoader } from "react-spinners";
 
@@ -10,11 +10,15 @@ const { Search } = Input;
 const Home: React.FC = () => {
   const [query, setQuery] = useState("");
   const [searchItem, setSearchItem] = useState("");
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 5;
+
   const { books, loading, error } = useAxiosBooks(searchItem);
 
   const handleSearch = (value: string) => {
     const trimmedValue = value.trim();
     setSearchItem(trimmedValue);
+    setCurrentPage(1);
 
     if (trimmedValue === "") {
       toast.info("Please enter a valid search term.", {
@@ -41,6 +45,10 @@ const Home: React.FC = () => {
     }
   }, [books]);
 
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedBooks = searchItem ? books.slice(startIndex, endIndex) : books;
   return (
     <div className="home flex flex-col justify-center items-center">
       <div className="py-5 sticky top-16 z-50">
@@ -69,7 +77,17 @@ const Home: React.FC = () => {
 
       {error && <p>{error}</p>}
 
-      <BookList books={books} />
+      <BookList books={paginatedBooks} />
+
+      {searchItem && books.length > itemsPerPage && (
+  <Pagination
+    current={currentPage}
+    total={books.length}
+    pageSize={itemsPerPage}
+    onChange={(page) => setCurrentPage(page)}
+    className="mt-4"
+  />
+)}
     </div>
   );
 };
